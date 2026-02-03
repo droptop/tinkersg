@@ -9,38 +9,45 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+// Apply theme immediately before React renders
+const applyThemeImmediate = (newTheme: Theme) => {
+  const html = document.documentElement;
+  if (newTheme === 'dark') {
+    html.classList.add('dark');
+  } else {
+    html.classList.remove('dark');
+  }
+};
+
+// Check localStorage and apply theme on page load
+const initialTheme = (() => {
+  try {
+    const storedTheme = localStorage.getItem('theme') as Theme | null;
+    return storedTheme || 'dark';
+  } catch {
+    return 'dark';
+  }
+})();
+
+applyThemeImmediate(initialTheme);
+
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
+  const [theme, setTheme] = useState<Theme>(initialTheme);
 
   useEffect(() => {
-    // Get theme from localStorage or default to dark
-    const storedTheme = localStorage.getItem('theme') as Theme | null;
-    const preferredTheme = storedTheme || 'dark';
-    setTheme(preferredTheme);
-    applyTheme(preferredTheme);
-    setMounted(true);
-  }, []);
-
-  const applyTheme = (newTheme: Theme) => {
-    const html = document.documentElement;
-    if (newTheme === 'dark') {
-      html.classList.add('dark');
-    } else {
-      html.classList.remove('dark');
-    }
-  };
+    // Ensure theme is applied
+    applyThemeImmediate(theme);
+  }, [theme]);
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    applyTheme(newTheme);
+    try {
+      localStorage.setItem('theme', newTheme);
+    } catch {
+      // Silently fail if localStorage isn't available
+    }
   };
-
-  if (!mounted) {
-    return <>{children}</>;
-  }
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
