@@ -3,7 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello world project</title>
+    <title>Tinkertorium - AI First Creative Agency</title>
+    <script>
+      // Apply dark theme immediately to prevent flash of light theme
+      const theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
   </head>
 
   <body>
