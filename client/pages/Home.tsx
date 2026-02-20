@@ -32,13 +32,16 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Hero image placeholder */}
-        <div className="mt-16 md:mt-20 rounded-xl overflow-hidden border border-border bg-card">
-          <div className="aspect-video bg-gradient-to-br from-card via-background to-card flex items-center justify-center">
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-accent/20 to-accent/10 rounded-lg mx-auto" />
-              <p className="text-muted-foreground text-sm">Abstract gradient or product UI mockup</p>
-            </div>
+        {/* Hero image section */}
+        <div className="mt-16 md:mt-20 rounded-xl overflow-hidden border border-border bg-card shadow-2xl shadow-accent/5">
+          <div className="aspect-video relative">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F53ae044003c9478c97e1d1df3132a688?format=webp&width=1600"
+              alt="Tinkertorium creative work"
+              className="w-full h-full object-cover"
+            />
+            {/* Subtle overlay to blend if needed */}
+            <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none" />
           </div>
         </div>
       </div>
