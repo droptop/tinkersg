@@ -12,11 +12,22 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent rounded-full blur-3xl w-96 h-96 -top-48 -right-48" />
       
       <div className="max-w-5xl mx-auto relative z-10">
-        <div className="text-center space-y-6 md:space-y-8">
+        <div className="text-center">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight">
             AI first creative<br />that ships
           </h1>
-          
+        </div>
+
+        {/* Hero image section */}
+        <div className="mt-8 md:mt-12 relative aspect-video">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F53ae044003c9478c97e1d1df3132a688?format=webp&width=1600"
+            alt="Tinkertorium creative work"
+            className="w-full h-full object-contain"
+          />
+        </div>
+
+        <div className="text-center mt-12 space-y-6 md:space-y-8">
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Design, build, and brand marketing that drives revenue. For founders, product teams, and emerging tech brands that need execution.
           </p>
@@ -30,15 +41,6 @@ const HeroSection = () => {
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </div>
-        </div>
-
-        {/* Hero image section */}
-        <div className="mt-8 md:mt-12 relative aspect-video">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F53ae044003c9478c97e1d1df3132a688?format=webp&width=1600"
-            alt="Tinkertorium creative work"
-            className="w-full h-full object-contain"
-          />
         </div>
       </div>
     </section>
