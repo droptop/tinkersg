@@ -33,16 +33,12 @@ const HeroSection = () => {
         </div>
 
         {/* Hero image section */}
-        <div className="mt-16 md:mt-20 rounded-xl overflow-hidden border border-border bg-card shadow-2xl shadow-accent/5">
-          <div className="aspect-video relative">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F53ae044003c9478c97e1d1df3132a688?format=webp&width=1600"
-              alt="Tinkertorium creative work"
-              className="w-full h-full object-cover"
-            />
-            {/* Subtle overlay to blend if needed */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none" />
-          </div>
+        <div className="mt-8 md:mt-12 relative aspect-video">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F53ae044003c9478c97e1d1df3132a688?format=webp&width=1600"
+            alt="Tinkertorium creative work"
+            className="w-full h-full object-contain"
+          />
         </div>
       </div>
     </section>
