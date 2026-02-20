@@ -14,7 +14,7 @@ const HeroSection = () => {
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight">
-            Design that Sells
+            Design that Converts
           </h1>
         </div>
 
