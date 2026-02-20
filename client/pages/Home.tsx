@@ -172,83 +172,6 @@ const ProcessSection = () => {
   );
 };
 
-/* Case Studies Teaser */
-const CaseStudiesSection = () => {
-  const caseStudies = [
-    {
-      title: 'Blueair',
-      result: 'Digital transformation and ecommerce rollout',
-      tags: ['Design', 'Development', 'eCommerce'],
-    },
-    {
-      title: 'Phonetradr',
-      result: 'Brand from scratch with cross-platform experience',
-      tags: ['Branding', 'Design', 'Development'],
-    },
-    {
-      title: 'Marshall',
-      result: 'Technical illustration for 10+ product launches',
-      tags: ['Illustration', 'Brand', 'Design'],
-    },
-    {
-      title: 'Job Flow',
-      result: 'Mobile-first product with complete brand identity',
-      tags: ['Product Design', 'Branding', 'Development'],
-    },
-  ];
-
-  return (
-    <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground">Featured work</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {caseStudies.map((project, idx) => (
-            <Link
-              key={idx}
-              to={`/work/${project.title.toLowerCase()}`}
-              className="group p-6 md:p-8 rounded-xl border border-border bg-card hover:border-accent/50 hover:shadow-lg transition-smooth"
-            >
-              {/* Placeholder image */}
-              <div className="w-full aspect-video bg-gradient-to-br from-card to-background rounded-lg mb-6 group-hover:from-accent/10 transition-smooth flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-muted rounded-lg mx-auto mb-2" />
-                  <p className="text-xs text-muted-foreground">Project image</p>
-                </div>
-              </div>
-
-              <h3 className="text-2xl font-semibold text-foreground mb-2 group-hover:text-accent transition-smooth">
-                {project.title}
-              </h3>
-              <p className="text-muted-foreground mb-4">{project.result}</p>
-              
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="inline-block px-3 py-1 text-xs font-medium bg-muted text-muted-foreground rounded-full">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        <div className="mt-12 text-center">
-          <Link
-            to="/work"
-            className="inline-flex items-center justify-center px-6 py-3 border border-border text-foreground font-semibold rounded-lg hover:bg-muted transition-smooth"
-          >
-            See all work
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-};
-
 /* Products Teaser */
 const ProductsSection = () => {
   const products = [
@@ -408,7 +331,6 @@ export default function Home() {
       <SocialProofSection />
       <ServicesGrid />
       <ProcessSection />
-      <CaseStudiesSection />
       <ProductsSection />
       <FAQSection />
       <CTASection />
