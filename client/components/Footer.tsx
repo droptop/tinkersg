@@ -6,7 +6,6 @@ const FOOTER_LINKS = [
     title: 'Product',
     items: [
       { label: 'Services', href: '/services' },
-      { label: 'Work', href: '/work' },
       { label: 'Products', href: '/products' },
     ],
   },

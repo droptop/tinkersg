@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Zap, Palette, Code, Brain, CheckCircle2, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Price } from '@/contexts/CurrencyContext';
 
 /* Hero Section */
 const HeroSection = () => {
@@ -26,13 +27,6 @@ const HeroSection = () => {
               className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-smooth"
             >
               Book a call
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
-            <Link
-              to="/work"
-              className="inline-flex items-center justify-center px-6 py-3 border border-border text-foreground font-semibold rounded-lg hover:bg-muted transition-smooth"
-            >
-              See work
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </div>
@@ -179,19 +173,22 @@ const ProductsSection = () => {
       name: 'Brand Sprint',
       outcome: 'Clear positioning + visual direction + launch kit',
       includes: ['Positioning', 'Identity direction', 'Landing page', 'Social templates', 'Prompt pack'],
-      price: 'From £8,000',
+      amount: 8000,
+      suffix: '',
     },
     {
       name: 'Website that Converts',
       outcome: 'Designed and built marketing site, CMS ready, measurable leads',
       includes: ['IA & Copy', 'Design', 'Build', 'Performance', 'SEO basics', 'Analytics'],
-      price: 'From £15,000',
+      amount: 15000,
+      suffix: '',
     },
     {
       name: 'AI Content Engine',
       outcome: 'Repeatable weekly content system with brand controls',
       includes: ['Format library', 'Templates', 'Prompts', 'Workflow setup', 'QA framework', 'Reporting'],
-      price: 'From £3,000/month',
+      amount: 3000,
+      suffix: '/month',
     },
   ];
 
@@ -213,7 +210,7 @@ const ProductsSection = () => {
             >
               <h3 className="text-2xl font-semibold text-foreground mb-3">{product.name}</h3>
               <p className="text-muted-foreground mb-6">{product.outcome}</p>
-              
+
               <div className="mb-8 flex-1">
                 <p className="text-xs font-semibold text-muted-foreground mb-3">Includes:</p>
                 <ul className="space-y-2">
@@ -227,7 +224,13 @@ const ProductsSection = () => {
               </div>
 
               <div className="space-y-4 border-t border-border pt-6">
-                <p className="text-xl font-bold text-foreground">{product.price}</p>
+                <div className="text-xl font-bold text-foreground">
+                  <Price
+                    amount={product.amount}
+                    prefix="From "
+                    suffix={product.suffix}
+                  />
+                </div>
                 <Link
                   to="/products"
                   className="w-full inline-flex items-center justify-center px-4 py-2 bg-accent text-accent-foreground font-semibold rounded-lg hover:opacity-90 transition-smooth text-sm"
