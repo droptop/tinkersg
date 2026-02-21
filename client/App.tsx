@@ -10,7 +10,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import Home from "./pages/Home";
+import Index from "./pages/Index";
 import Services from "./pages/Services";
 import Products from "./pages/Products";
 import About from "./pages/About";
@@ -31,7 +31,7 @@ const App = () => (
             <Header />
             <main>
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Index />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/about" element={<About />} />
