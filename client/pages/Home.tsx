@@ -29,7 +29,7 @@ const HeroSection = () => {
 
         <div className="text-center mt-12 space-y-6 md:space-y-8">
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Design, build, and brand marketing that drives revenue. For founders, product teams, and emerging tech brands that need execution.
+            We work with founders and operators who see design as a growth engine. From product to platform to hardware hybrids, we build systems that move businesses forward.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
