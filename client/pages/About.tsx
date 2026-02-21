@@ -190,7 +190,7 @@ const ContactSection = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-smooth text-lg"
+            className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-full hover:opacity-90 transition-smooth text-lg"
           >
             Book a call
             <ArrowRight className="w-5 h-5 ml-2" />

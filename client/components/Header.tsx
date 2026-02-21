@@ -45,7 +45,7 @@ export const Header = () => {
             {/* CTA Button - Desktop */}
             <Link
               to="/contact"
-              className="hidden sm:inline-block px-5 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:opacity-90 transition-smooth"
+              className="hidden sm:inline-block px-5 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:opacity-90 transition-smooth"
             >
               Book a call
             </Link>
@@ -80,7 +80,7 @@ export const Header = () => {
             ))}
             <Link
               to="/contact"
-              className="block w-full px-3 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:opacity-90 transition-smooth text-center"
+              className="block w-full px-3 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:opacity-90 transition-smooth text-center"
               onClick={() => setMobileMenuOpen(false)}
             >
               Book a call

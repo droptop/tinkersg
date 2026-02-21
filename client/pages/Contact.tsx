@@ -28,7 +28,7 @@ export default function Contact() {
           </p>
           <button
             onClick={() => setSubmitted(false)}
-            className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-smooth"
+            className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:opacity-90 transition-smooth"
           >
             Send another message
           </button>
@@ -145,7 +145,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full inline-flex items-center justify-center px-8 py-4 bg-accent text-accent-foreground font-semibold rounded-lg hover:opacity-90 transition-smooth disabled:opacity-50"
+                className="w-full inline-flex items-center justify-center px-8 py-4 bg-accent text-accent-foreground font-semibold rounded-full hover:opacity-90 transition-smooth disabled:opacity-50"
               >
                 {loading ? (
                   <span className="flex items-center">
