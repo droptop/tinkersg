@@ -27,11 +27,15 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
           {/* Brand section */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-accent to-accent/50 rounded-lg flex items-center justify-center">
-                <span className="text-white text-sm font-bold">T</span>
+            <Link to="/" className="flex items-center space-x-3 mb-6">
+              <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2Ff82880770fb2433b816220808d99f7a7?format=webp&width=100"
+                  alt="Tinkertorium Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
-              <span className="font-bold text-lg text-foreground">Tinkertorium</span>
+              <span className="font-bold text-xl text-foreground tracking-tight">Tinkertorium</span>
             </Link>
             <p className="text-muted-foreground text-sm mb-6 max-w-sm">
               AI-first creative agency. Design, build, and brand marketing that drives revenue.

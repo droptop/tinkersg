@@ -6,7 +6,8 @@ const AboutHero = () => {
   return (
     <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent rounded-full blur-3xl w-96 h-96 -top-48 -right-48" />
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-primary/10 to-transparent rounded-full blur-3xl w-96 h-96 -top-48 -right-48" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-transparent rounded-full blur-3xl w-80 h-80 top-1/2 -left-40" />
       
       <div className="max-w-5xl mx-auto relative z-10 text-center">
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight mb-6">
@@ -180,7 +181,7 @@ const GlobalImpact = () => {
 const ContactSection = () => {
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-      <div className="max-w-4xl mx-auto text-center space-y-8 p-12 rounded-3xl border border-border bg-gradient-to-br from-accent/10 to-transparent">
+      <div className="max-w-4xl mx-auto text-center space-y-8 p-12 rounded-3xl border border-border bg-gradient-to-br from-accent/5 via-primary/5 to-transparent">
         <h2 className="text-4xl md:text-5xl font-bold text-foreground">
           Let's talk about your next project
         </h2>

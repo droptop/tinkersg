@@ -18,11 +18,15 @@ export const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-8 h-8 bg-gradient-to-br from-accent to-accent/50 rounded-lg flex items-center justify-center">
-              <span className="text-white text-sm font-bold">T</span>
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2Ff82880770fb2433b816220808d99f7a7?format=webp&width=100"
+                alt="Tinkertorium Logo"
+                className="w-full h-full object-contain group-hover:scale-110 transition-smooth"
+              />
             </div>
-            <span className="font-bold text-lg text-foreground hidden sm:inline">Tinkertorium</span>
+            <span className="font-bold text-xl text-foreground hidden sm:inline tracking-tight">Tinkertorium</span>
           </Link>
 
           {/* Desktop Navigation */}

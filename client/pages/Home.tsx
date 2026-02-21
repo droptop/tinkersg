@@ -9,7 +9,8 @@ const HeroSection = () => {
   return (
     <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent rounded-full blur-3xl w-96 h-96 -top-48 -right-48" />
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-primary/10 to-transparent rounded-full blur-3xl w-96 h-96 -top-48 -right-48" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-transparent rounded-full blur-3xl w-80 h-80 top-1/2 -left-40" />
       
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center">
@@ -110,7 +111,7 @@ const ServicesGrid = () => {
                 key={idx}
                 className="p-8 rounded-xl border border-border bg-card hover:border-accent/50 hover:shadow-lg transition-smooth group"
               >
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-smooth">
+                <div className="w-12 h-12 bg-gradient-to-br from-accent/10 to-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:from-accent/20 group-hover:to-primary/20 transition-smooth">
                   <Icon className="w-6 h-6 text-accent" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">{service.title}</h3>
