@@ -53,7 +53,7 @@ const SocialProofSection = () => {
   const clients = [
     { name: 'GIC', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2Fe5fbd53072f84221828638c3e84e7d49?format=webp&width=200' },
     { name: 'Zound Industries', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F8e3cc6d712514beba60476a1c48f2f6b?format=webp&width=200' },
-    { name: 'Blueair', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F723b960733c543db95460afdad1a2f6a?format=webp&width=200' },
+    { name: 'Blueair', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F723b960733c543db95460afdad1a2f6a?format=webp&width=200', className: 'h-6 md:h-8' },
   ];
 
   return (
@@ -62,7 +62,7 @@ const SocialProofSection = () => {
         <p className="text-center text-sm text-muted-foreground mb-10">Trusted by leading brands</p>
         <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 opacity-60">
           {clients.map((client) => (
-            <div key={client.name} className="h-8 md:h-10 flex items-center justify-center transition-smooth hover:opacity-100 grayscale hover:grayscale-0">
+            <div key={client.name} className={`flex items-center justify-center transition-smooth hover:opacity-100 grayscale hover:grayscale-0 ${client.className || 'h-8 md:h-10'}`}>
               <img
                 src={client.logo}
                 alt={`${client.name} logo`}
