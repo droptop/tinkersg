@@ -1,64 +1,75 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Globe, Zap, Palette, Award, History, Users, Phone } from 'lucide-react';
+import { ArrowRight, Globe, Zap, Palette, Award, History, Users, Phone, Cpu } from 'lucide-react';
+
+/* Tech Metadata Label */
+const TechLabel = ({ text, side = 'left' }: { text: string, side?: 'left' | 'right' }) => (
+  <div className={`absolute top-0 ${side === 'left' ? 'left-0' : 'right-0'} p-10 opacity-20 hidden lg:block`}>
+    <div className="flex items-center gap-4 mono text-[10px] uppercase tracking-[0.5em]">
+      <div className="w-12 h-[1px] bg-foreground" />
+      {text}
+    </div>
+  </div>
+);
 
 /* Hero Section */
 const AboutHero = () => {
   return (
-    <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-primary/10 to-transparent rounded-full blur-3xl w-96 h-96 -top-48 -right-48" />
-      <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-transparent rounded-full blur-3xl w-80 h-80 top-1/2 -left-40" />
-      
-      <div className="max-w-5xl mx-auto relative z-10 text-center">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight mb-6">
-          Small team, senior thinking,<br />hands-on delivery
+    <section className="relative pt-48 pb-32 px-6 sm:px-10 lg:px-12 overflow-hidden grid-bg border-b border-border/50">
+      <TechLabel text="CORE_MISSION // 004" />
+      <div className="max-w-6xl mx-auto relative z-10">
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] mb-12">
+          Senior Thinking.<br />
+          <span className="text-gradient-rainbow">Hands-on</span> Delivery.
         </h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          Tinkertorium is a design and development agency based in Singapore. Since 2007, we've been helping global brands and early-stage startups design, build, and ship digital products that drive revenue.
+        <p className="text-xl md:text-3xl text-muted-foreground max-w-3xl leading-relaxed mono font-light">
+          Tinkertorium is a design and development agency based in Singapore. Since 2007, we've been building the next generation of digital infrastructure.
         </p>
       </div>
     </section>
   );
 };
 
-/* Our Story Section */
+/* Our Story Section - Minimal / Line-based */
 const OurStory = () => {
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24 border-y border-border bg-card/30">
+    <section className="px-6 sm:px-10 lg:px-12 py-32 border-b border-border/50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <div className="inline-flex items-center px-3 py-1 text-xs font-semibold bg-accent/10 text-accent rounded-full mb-4">
-              <History className="w-3 h-3 mr-2" />
-              Established 2007
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+          <div className="lg:col-span-5 space-y-12">
+            <div className="inline-flex items-center px-4 py-1 rounded-full border border-accent/30 mono text-[10px] text-accent uppercase tracking-widest bg-accent/5">
+              EST_2007 // SIN
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">Our Story</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Founded in 2007 as Tinkertorium Pte Ltd, we began with a simple mission: to help companies navigate the rapidly evolving digital landscape through design-led execution.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              From our base in Singapore, we've expanded our reach to work with clients across the globe—from Swedish household names to South African startups and iconic consumer electronics brands.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Today, we operate as an AI-first agency, integrating emerging technologies into our design and development workflows to deliver faster, more effective results for our partners.
-            </p>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none">The<br />Narrative</h2>
+            <div className="japanese-vertical mono text-[10px] opacity-20 tracking-[1.5em] leading-none uppercase pt-10">
+              歴史と進化 // デジタル
+            </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-6 rounded-xl border border-border bg-card text-center space-y-2">
-              <div className="text-3xl font-bold text-accent">17+</div>
-              <div className="text-sm text-muted-foreground uppercase tracking-wider font-semibold">Years Experience</div>
+          
+          <div className="lg:col-span-7 space-y-10">
+            <div className="space-y-8 text-xl md:text-2xl text-foreground/80 leading-relaxed mono font-light">
+              <p>
+                Founded in 2007 as Tinkertorium Pte Ltd, we began with a simple mission: to help companies navigate the rapidly evolving digital landscape through design-led execution.
+              </p>
+              <p>
+                From our base in Singapore, we've expanded our reach to work with clients across the globe—from Swedish household names to South African startups.
+              </p>
+              <p>
+                Today, we operate as an AI-first agency, integrating emerging technologies into our workflows to deliver faster, more effective results.
+              </p>
             </div>
-            <div className="p-6 rounded-xl border border-border bg-card text-center space-y-2">
-              <div className="text-3xl font-bold text-accent">50+</div>
-              <div className="text-sm text-muted-foreground uppercase tracking-wider font-semibold">Countries Deployed</div>
-            </div>
-            <div className="p-6 rounded-xl border border-border bg-card text-center space-y-2">
-              <div className="text-3xl font-bold text-accent">Global</div>
-              <div className="text-sm text-muted-foreground uppercase tracking-wider font-semibold">Client Base</div>
-            </div>
-            <div className="p-6 rounded-xl border border-border bg-card text-center space-y-2">
-              <div className="text-3xl font-bold text-accent">AI-First</div>
-              <div className="text-sm text-muted-foreground uppercase tracking-wider font-semibold">Execution</div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-border/50">
+              {[
+                { label: 'Experience', val: '17+' },
+                { label: 'Countries', val: '50+' },
+                { label: 'Clients', val: 'Global' },
+                { label: 'Workflow', val: 'AI-First' },
+              ].map((stat) => (
+                <div key={stat.label} className="space-y-2">
+                  <div className="text-3xl font-black tracking-tighter">{stat.val}</div>
+                  <div className="mono text-[10px] uppercase tracking-widest opacity-40">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -67,108 +78,47 @@ const OurStory = () => {
   );
 };
 
-/* Core Philosophy Section */
+/* Core Philosophy - Minimalist Grid */
 const CorePhilosophy = () => {
   const values = [
     {
-      icon: Users,
       title: 'Senior Thinking',
-      description: 'You work directly with experienced partners, not junior account managers. We bring 17+ years of expertise to every project.',
+      description: 'You work directly with experienced partners, not junior account managers.',
+      id: 'V_01'
     },
     {
-      icon: Zap,
       title: 'Execution Focused',
-      description: "We don't just deliver slide decks. We build functional prototypes, cross-platform apps, and global e-commerce systems.",
+      description: "We don't just deliver slide decks. We build functional prototypes and apps.",
+      id: 'V_02'
     },
     {
-      icon: Palette,
       title: 'Design-Led',
-      description: "Everything we do starts with user experience and brand identity. We craft products that are as beautiful as they are functional.",
+      description: "Everything we do starts with user experience and visual identity.",
+      id: 'V_03'
     },
     {
-      icon: Globe,
       title: 'Global Scale',
-      description: "From Singapore to Stockholm, we've built systems that operate in 50+ countries and serve millions of users.",
+      description: "Systems that operate in 50+ countries and serve millions of users.",
+      id: 'V_04'
     },
   ];
 
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-      <div className="max-w-7xl mx-auto text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">How we operate</h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Our approach is built on seniority, speed, and a deep understanding of digital ecosystems.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {values.map((value, idx) => {
-          const Icon = value.icon;
-          return (
-            <div key={idx} className="space-y-4">
-              <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
-                <Icon className="w-6 h-6 text-accent" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground">{value.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{value.description}</p>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-};
-
-/* Global Impact / Client Showcase */
-const GlobalImpact = () => {
-  const impacts = [
-    {
-      client: 'Blueair',
-      country: 'Sweden / Global',
-      impact: 'Assisted in their digital transformation across 50+ countries. Designed the IFA award-winning Blueair Friend app and optimized global support systems.',
-    },
-    {
-      client: 'Phonetradr',
-      country: 'South Africa / Global',
-      impact: 'Built the brand from the ground up—from logo and mascot to a high-converting cross-platform online experience and sales tools.',
-    },
-    {
-      client: 'Marshall',
-      country: 'Global',
-      impact: 'A long-standing partnership providing technical illustrations and design for packaging and marketing across 10+ product launches.',
-    },
-    {
-      client: 'Job Flow',
-      country: 'Regional',
-      impact: 'Developed a mobile-first brand and cross-platform app solution to help users find local work near their location.',
-    },
-  ];
-
-  return (
-    <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-card/30">
+    <section className="px-6 sm:px-10 lg:px-12 py-32 bg-background circuit-bg border-b border-border/50">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
-          <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Global Impact</h2>
-            <p className="text-lg text-muted-foreground">
-              Our work spans industries and continents, delivering results that resonate worldwide.
-            </p>
-          </div>
-          <div className="inline-flex items-center px-4 py-2 bg-accent/10 text-accent rounded-lg font-semibold text-sm">
-            <Award className="w-4 h-4 mr-2" />
-            IFA Best Show Award Winner
-          </div>
+        <div className="mb-24 space-y-4">
+          <div className="mono text-xs text-accent uppercase tracking-[0.5em]">Operating System</div>
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">Core Values</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {impacts.map((item, idx) => (
-            <div
-              key={idx}
-              className="p-8 rounded-xl border border-border bg-card hover:border-accent/50 transition-smooth group"
-            >
-              <div className="text-xs font-bold text-accent uppercase tracking-widest mb-2">{item.country}</div>
-              <h3 className="text-2xl font-semibold text-foreground mb-4 group-hover:text-accent transition-smooth">{item.client}</h3>
-              <p className="text-muted-foreground leading-relaxed">{item.impact}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x border-y border-border/50">
+          {values.map((value) => (
+            <div key={value.id} className="p-10 group hover:bg-accent/[0.02] transition-smooth relative">
+              <div className="mono text-[10px] opacity-20 mb-8">{value.id}</div>
+              <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-accent transition-smooth">{value.title}</h3>
+              <p className="text-muted-foreground mono text-sm opacity-70 group-hover:opacity-100 transition-opacity leading-relaxed">
+                {value.description}
+              </p>
             </div>
           ))}
         </div>
@@ -177,31 +127,88 @@ const GlobalImpact = () => {
   );
 };
 
-/* Contact / Call to Action Section */
+/* Global Impact - High Trend Typography */
+const GlobalImpact = () => {
+  const impacts = [
+    {
+      client: 'Blueair',
+      country: 'Sweden / Global',
+      impact: 'Digital transformation across 50+ countries. Designed the IFA award-winning app.',
+    },
+    {
+      client: 'Phonetradr',
+      country: 'South Africa / Global',
+      impact: 'Built the brand from the ground up—from logo to high-converting cross-platform tools.',
+    },
+    {
+      client: 'Marshall',
+      country: 'Global',
+      impact: 'Technical illustrations and design for packaging across 10+ product launches.',
+    },
+    {
+      client: 'Job Flow',
+      country: 'Regional',
+      impact: 'Developed a mobile-first brand and cross-platform app solution for local employment.',
+    },
+  ];
+
+  return (
+    <section className="px-6 sm:px-10 lg:px-12 py-32 grid-bg border-b border-border/50">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+          <div className="space-y-4">
+            <div className="mono text-xs text-accent uppercase tracking-widest">Case_Studies</div>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">Global Impact</h2>
+          </div>
+          <div className="inline-flex items-center px-6 py-3 rounded-full border border-accent/20 mono text-[10px] text-accent uppercase tracking-[0.2em] animate-pulse">
+            <Award className="w-4 h-4 mr-3" />
+            IFA Best Show Award
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border/50 border border-border/50">
+          {impacts.map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-background p-12 hover:bg-accent/[0.02] transition-smooth group"
+            >
+              <div className="flex justify-between items-start mb-10">
+                <div className="mono text-[10px] text-accent uppercase tracking-widest">{item.country}</div>
+                <div className="mono text-[10px] opacity-20">0{idx + 1}</div>
+              </div>
+              <h3 className="text-4xl font-bold tracking-tighter mb-6 group-hover:text-gradient-rainbow transition-smooth">{item.client}</h3>
+              <p className="text-muted-foreground mono text-sm leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">{item.impact}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* Contact / Call to Action - Minimal Full Width */
 const ContactSection = () => {
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-      <div className="max-w-4xl mx-auto text-center space-y-8 p-12 rounded-3xl border border-border bg-gradient-to-br from-accent/5 via-primary/5 to-transparent">
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-          Let's talk about your next project
+    <section className="px-6 sm:px-10 lg:px-12 py-40 bg-foreground relative overflow-hidden">
+      <div className="absolute inset-0 circuit-bg opacity-10" />
+      <div className="max-w-5xl mx-auto text-center relative z-10 space-y-16">
+        <h2 className="text-6xl md:text-8xl lg:text-[10rem] font-black text-background tracking-tighter leading-none">
+          Ready to<br />
+          <span className="text-gradient-rainbow">Build?</span>
         </h2>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Whether you're looking for a brand refresh, a global e-commerce rollout, or an AI-enabled content engine—we're here to help.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-10 justify-center items-center">
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-full hover:opacity-90 transition-smooth text-lg"
+            className="group relative inline-flex items-center justify-center px-12 py-6 bg-background text-foreground font-black rounded-full hover:scale-105 transition-smooth text-xl uppercase tracking-tighter"
           >
-            Book a call
-            <ArrowRight className="w-5 h-5 ml-2" />
+            <span className="relative z-10">Initialize Project</span>
           </Link>
           <a
             href="tel:+6597368403"
-            className="inline-flex items-center text-foreground hover:text-accent transition-smooth font-semibold group"
+            className="group flex items-center text-background hover:text-accent transition-smooth mono font-bold text-lg"
           >
-            <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-smooth">
-              <Phone className="w-4 h-4 text-accent" />
+            <div className="w-12 h-12 rounded-full border border-background/20 flex items-center justify-center mr-4 group-hover:border-accent">
+              <Phone className="w-5 h-5" />
             </div>
             +65 9736 8403
           </a>
@@ -214,7 +221,7 @@ const ContactSection = () => {
 /* Main About Page */
 export default function About() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background selection:bg-accent selection:text-accent-foreground">
       <AboutHero />
       <OurStory />
       <CorePhilosophy />

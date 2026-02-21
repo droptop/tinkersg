@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Terminal } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Services', href: '/services' },
@@ -14,81 +14,92 @@ export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/50 backdrop-blur-xl border-b border-border/50">
+      <div className="max-w-[1800px] mx-auto px-6 sm:px-10 lg:px-12">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2Ff82880770fb2433b816220808d99f7a7?format=webp&width=100"
-                alt="Tinkertorium Logo"
-                className="w-full h-full object-contain group-hover:scale-110 transition-smooth"
+          <Link to="/" className="flex items-center space-x-4 group">
+            <div className="w-10 h-10 flex items-center justify-center relative">
+              <div className="absolute inset-0 gradient-rainbow opacity-20 blur-lg group-hover:opacity-40 transition-opacity" />
+              <img 
+                src="https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2Ff82880770fb2433b816220808d99f7a7?format=webp&width=100" 
+                alt="Tinkertorium Logo" 
+                className="w-full h-full object-contain relative z-10 group-hover:scale-110 transition-smooth"
               />
             </div>
-            <span className="font-bold text-xl text-foreground hidden sm:inline tracking-tight">Tinkertorium</span>
+            <div className="flex flex-col">
+              <span className="font-black text-xl text-foreground leading-none tracking-tighter">Tinkertorium</span>
+              <span className="mono text-[8px] uppercase tracking-[0.3em] opacity-40 leading-none mt-1">Creative // Tech</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
+          <nav className="hidden lg:flex items-center space-x-2">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
-                className="px-3 py-2 text-sm font-medium text-foreground hover:bg-muted rounded-lg transition-smooth"
+                className="px-5 py-2 mono text-[11px] uppercase tracking-[0.2em] text-foreground/60 hover:text-foreground transition-smooth relative group"
               >
-                {item.label}
+                <span className="relative z-10">{item.label}</span>
+                <div className="absolute bottom-0 left-5 right-5 h-[1px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
               </Link>
             ))}
           </nav>
 
           {/* Right side items */}
-          <div className="flex items-center space-x-4">
-            <ThemeSwitcher />
+          <div className="flex items-center space-x-6">
+            <div className="hidden sm:flex items-center space-x-6">
+              <div className="h-4 w-[1px] bg-border/50" />
+              <ThemeSwitcher />
+            </div>
             
             {/* CTA Button - Desktop */}
             <Link
               to="/contact"
-              className="hidden sm:inline-block px-5 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:opacity-90 transition-smooth"
+              className="hidden md:inline-flex items-center px-8 py-3 bg-foreground text-background mono text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:scale-105 transition-smooth"
             >
-              Book a call
+              Initialize Project
             </Link>
 
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-muted transition-smooth"
+              className="lg:hidden p-2 text-foreground/60 hover:text-foreground transition-smooth"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden pb-4 space-y-2">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                to={item.href}
-                className="block px-3 py-2 text-sm font-medium text-foreground hover:bg-muted rounded-lg transition-smooth"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Link
-              to="/contact"
-              className="block w-full px-3 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:opacity-90 transition-smooth text-center"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Book a call
-            </Link>
+          <div className="lg:hidden fixed inset-0 top-20 bg-background/95 backdrop-blur-2xl p-10 z-50">
+            <div className="flex flex-col space-y-8">
+              {NAV_ITEMS.map((item) => (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="text-4xl font-black tracking-tighter hover:text-accent transition-smooth"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <div className="pt-10 space-y-10">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center w-full px-8 py-5 bg-foreground text-background font-bold rounded-full text-lg uppercase tracking-tighter"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Book a call
+                </Link>
+                <div className="flex justify-center">
+                  <ThemeSwitcher />
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>

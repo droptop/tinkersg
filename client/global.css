@@ -1,5 +1,5 @@
 /** @import must precede all other statements */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -156,8 +156,58 @@
     @apply bg-gradient-to-br from-card to-background opacity-50;
   }
 
+  /* Custom tech utilities */
+  .circuit-bg {
+    background-image: radial-gradient(circle at 2px 2px, theme('colors.border') 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  .grid-bg {
+    background-size: 40px 40px;
+    background-image:
+      linear-gradient(to right, theme('colors.border') 1px, transparent 1px),
+      linear-gradient(to bottom, theme('colors.border') 1px, transparent 1px);
+  }
+
+  .text-gradient-rainbow {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#ff0080] via-[#7928ca] to-[#4299e1] animate-gradient-x;
+  }
+
+  .gradient-rainbow {
+    background: linear-gradient(
+      45deg,
+      #ff0080,
+      #7928ca,
+      #4299e1,
+      #48bb78,
+      #ed64a6
+    );
+    background-size: 400% 400%;
+    animation: rainbow-flow 15s ease infinite;
+  }
+
+  @keyframes rainbow-flow {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+  }
+
+  .japanese-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Lose the boxes base rule */
+  .no-box {
+    @apply border-none bg-transparent shadow-none rounded-none p-0;
+  }
+
   /* Smooth transitions */
   .transition-smooth {
-    @apply transition-all duration-300 ease-out;
+    @apply transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
