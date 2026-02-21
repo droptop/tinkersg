@@ -51,9 +51,9 @@ const HeroSection = () => {
 /* Social Proof Strip */
 const SocialProofSection = () => {
   const clients = [
-    { name: 'GIC', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2Fe5fbd53072f84221828638c3e84e7d49?format=webp&width=200' },
+    { name: 'GIC', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2Fe5fbd53072f84221828638c3e84e7d49?format=webp&width=200', className: 'h-10 md:h-14' },
     { name: 'Zound Industries', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F8e3cc6d712514beba60476a1c48f2f6b?format=webp&width=200' },
-    { name: 'Blueair', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F723b960733c543db95460afdad1a2f6a?format=webp&width=200', className: 'h-6 md:h-8' },
+    { name: 'Blueair', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F723b960733c543db95460afdad1a2f6a?format=webp&width=200', className: 'h-4 md:h-6' },
   ];
 
   return (
