@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Brain, Palette, Code, Zap, Smartphone, Search, Database, Layout, ShieldCheck, BarChart3, Globe } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
+import { motion } from 'framer-motion';
 
 /* Tech Metadata Label */
 const TechLabel = ({ text, side = 'left' }: { text: string, side?: 'left' | 'right' }) => (
@@ -37,27 +38,32 @@ const ServicesHero = () => {
 };
 
 /* Service Module Section */
-const ServiceModule = ({ 
-  id, 
-  title, 
-  description, 
-  items, 
+const ServiceModule = ({
+  id,
+  title,
+  description,
+  items,
   icon: Icon,
-  reverse = false 
-}: { 
-  id: string, 
-  title: string, 
-  description: string, 
-  items: string[], 
+  reverse = false
+}: {
+  id: string,
+  title: string,
+  description: string,
+  items: string[],
   icon: any,
-  reverse?: boolean 
+  reverse?: boolean
 }) => {
-  const { ref, className } = useReveal();
   return (
-    <section ref={ref} className={`px-6 sm:px-10 lg:px-12 py-32 border-b border-border/50 relative overflow-hidden ${className}`}>
+    <section className="px-6 sm:px-10 lg:px-12 py-32 border-b border-border/50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-20 items-center`}>
-          <div className="flex-1 space-y-12">
+          <motion.div
+            initial={{ opacity: 0, x: reverse ? 30 : -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex-1 space-y-12"
+          >
             <div className="space-y-6">
               <div className="mono text-xs text-accent uppercase tracking-widest">Module // {id}</div>
               <div className="flex items-center gap-6">
@@ -70,20 +76,33 @@ const ServiceModule = ({
                 {description}
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {items.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-4 p-6 bg-accent/[0.02] border border-border/50 rounded-2xl group hover:bg-accent/[0.05] transition-smooth">
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + idx * 0.05 }}
+                  className="flex items-start gap-4 p-6 bg-accent/[0.02] border border-border/50 rounded-2xl group hover:bg-accent/[0.05] transition-smooth"
+                >
                   <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center mt-1 group-hover:bg-accent group-hover:text-background transition-smooth">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent group-hover:bg-background" />
                   </div>
                   <span className="mono text-sm opacity-70 group-hover:opacity-100 transition-opacity">{item}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
-          
-          <div className="flex-1 w-full aspect-square lg:aspect-video relative rounded-3xl overflow-hidden border border-border/50 group">
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, rotate: reverse ? -2 : 2 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="flex-1 w-full aspect-square lg:aspect-video relative rounded-3xl overflow-hidden border border-border/50 group"
+          >
              <div className="absolute inset-0 gradient-rainbow opacity-5 group-hover:opacity-10 transition-opacity" />
              <div className="absolute inset-0 circuit-bg opacity-20" />
              <div className="absolute inset-0 flex items-center justify-center">
@@ -92,7 +111,7 @@ const ServiceModule = ({
              <div className="absolute bottom-6 left-6 mono text-[10px] opacity-20 uppercase tracking-[0.3em]">
                SEC_NODE // {id}
              </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

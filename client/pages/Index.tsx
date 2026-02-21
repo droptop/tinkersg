@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Zap, Palette, Code, Brain, CheckCircle2, ChevronDown, Terminal, Cpu, Activity, LayoutGrid } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Price } from '@/contexts/CurrencyContext';
 import { useReveal } from '@/hooks/useReveal';
 import { DemoResponse } from "@shared/api";
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
 /* Tech Metadata Label */
 const TechLabel = ({ text, side = 'left' }: { text: string, side?: 'left' | 'right' }) => (
@@ -18,18 +19,37 @@ const TechLabel = ({ text, side = 'left' }: { text: string, side?: 'left' | 'rig
 
 /* Hero Section */
 const HeroSection = ({ serverStatus }: { serverStatus: string }) => {
-  const { ref, className } = useReveal();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section ref={ref} className={`relative pt-56 pb-48 px-4 sm:px-6 lg:px-8 overflow-hidden grid-bg border-b border-border/50 ${className}`}>
+    <section ref={containerRef} className="relative pt-56 pb-48 px-4 sm:px-6 lg:px-8 overflow-hidden grid-bg border-b border-border/50">
+      <motion.div style={{ y: y1, opacity }} className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-[120px] animate-pulse delay-700" />
+      </motion.div>
+
       <TechLabel text="SYSTEM_INIT // 001" />
       <div className="absolute top-0 right-0 p-8 opacity-20 hidden lg:block japanese-vertical mono text-xs tracking-widest leading-loose">
         ティンカートリウム // クリエイティブ・テクノロジー
       </div>
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
-          <div className="flex-1 space-y-16">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex-1 space-y-16"
+          >
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/5 border border-accent/20 rounded-full mono text-[10px] text-accent uppercase tracking-wider">
                 <span className="relative flex h-2 w-2">
@@ -43,7 +63,7 @@ const HeroSection = ({ serverStatus }: { serverStatus: string }) => {
                 <span className="text-foreground">that Converts</span>
               </h1>
             </div>
-            
+
             <p className="text-xl md:text-2xl text-muted-foreground max-w-xl leading-relaxed mono font-light opacity-80">
               We work with founders and operators who see design as a growth engine. From product to platform to hardware hybrids, we build systems that move businesses forward.
             </p>
@@ -64,9 +84,16 @@ const HeroSection = ({ serverStatus }: { serverStatus: string }) => {
                 Optimized for Growth
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex-1 relative">
+          <motion.div
+            style={{ y: y2 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+            className="flex-1 relative"
+          >
             <div className="relative z-10 aspect-square lg:aspect-auto">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F53ae044003c9478c97e1d1df3132a688?format=webp&width=1600"
@@ -77,7 +104,7 @@ const HeroSection = ({ serverStatus }: { serverStatus: string }) => {
             {/* Geometric circuit elements */}
             <div className="absolute -inset-10 border border-accent/10 rounded-full animate-pulse pointer-events-none" />
             <div className="absolute -inset-20 border border-primary/10 rounded-full animate-pulse pointer-events-none delay-75" />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -86,7 +113,6 @@ const HeroSection = ({ serverStatus }: { serverStatus: string }) => {
 
 /* Social Proof Strip */
 const SocialProofSection = () => {
-  const { ref, className } = useReveal();
   const clients = [
     { name: 'GIC', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2Fe5fbd53072f84221828638c3e84e7d49?format=webp&width=200', className: 'h-8 md:h-10' },
     { name: 'Zound Industries', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F8e3cc6d712514beba60476a1c48f2f6b?format=webp&width=200' },
@@ -94,19 +120,33 @@ const SocialProofSection = () => {
   ];
 
   return (
-    <section ref={ref} className={`px-4 sm:px-6 lg:px-8 py-20 border-b border-border/50 bg-background/50 backdrop-blur-sm relative overflow-hidden ${className}`}>
+    <section className="px-4 sm:px-6 lg:px-8 py-20 border-b border-border/50 bg-background/50 backdrop-blur-sm relative overflow-hidden">
       <TechLabel text="TRUSTED_PARTNERS // 002" side="right" />
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
-        <p className="mono text-[10px] uppercase tracking-[0.4em] opacity-40">Verified Partners</p>
+        <motion.p
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="mono text-[10px] uppercase tracking-[0.4em] opacity-40"
+        >
+          Verified Partners
+        </motion.p>
         <div className="flex flex-wrap items-center justify-center gap-16 md:gap-24 opacity-40">
-          {clients.map((client) => (
-            <div key={client.name} className={`flex items-center justify-center transition-smooth hover:opacity-100 grayscale hover:grayscale-0 ${client.className || 'h-6 md:h-8'}`}>
+          {clients.map((client, idx) => (
+            <motion.div
+              key={client.name}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className={`flex items-center justify-center transition-smooth hover:opacity-100 grayscale hover:grayscale-0 ${client.className || 'h-6 md:h-8'}`}
+            >
               <img
                 src={client.logo}
                 alt={`${client.name} logo`}
                 className="h-full w-auto object-contain dark:brightness-100 brightness-0"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -116,7 +156,14 @@ const SocialProofSection = () => {
 
 /* Services Grid - Borderless / Techy */
 const ServicesGrid = () => {
-  const { ref, className } = useReveal();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+
   const services = [
     {
       icon: Brain,
@@ -145,24 +192,43 @@ const ServicesGrid = () => {
   ];
 
   return (
-    <section ref={ref} className={`px-4 sm:px-6 lg:px-8 py-48 circuit-bg border-b border-border/50 ${className}`}>
-      <div className="max-w-7xl mx-auto">
+    <section ref={containerRef} className="px-4 sm:px-6 lg:px-8 py-48 circuit-bg border-b border-border/50 relative overflow-hidden">
+      <motion.div style={{ y }} className="absolute inset-0 opacity-30 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full circuit-bg" />
+      </motion.div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-32 gap-12">
-          <div className="space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
             <div className="mono text-xs text-accent uppercase tracking-widest">Capabilities // 0x01</div>
             <h2 className="text-6xl md:text-8xl font-bold tracking-tighter">Our Core<br /><span className="text-muted-foreground/30 italic">Functions</span></h2>
-          </div>
-          <p className="text-xl text-muted-foreground max-w-md mono font-light leading-relaxed">
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-muted-foreground max-w-md mono font-light leading-relaxed"
+          >
             Everything your brand needs to move the needle in a tech-driven market. Staggered modules for precise execution.
-          </p>
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x border-y border-border/50">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x border-y border-border/50 bg-background/50 backdrop-blur-sm">
           {services.map((service, idx) => {
             const Icon = service.icon;
             return (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="group p-10 space-y-8 hover:bg-accent/[0.02] transition-smooth relative overflow-hidden"
               >
                 <div className="absolute top-4 right-4 mono text-[10px] opacity-20 group-hover:opacity-50 transition-opacity">
@@ -184,7 +250,7 @@ const ServicesGrid = () => {
                 >
                   Request Service <ArrowRight className="w-3 h-3 ml-2" />
                 </Link>
-              </div>
+              </motion.div>
             );
           })}
         </div>
@@ -195,7 +261,6 @@ const ServicesGrid = () => {
 
 /* Products Teaser - Borderless / Iridescent */
 const ProductsSection = () => {
-  const { ref, className } = useReveal();
   const products = [
     {
       name: 'Brand Sprint',
@@ -221,18 +286,37 @@ const ProductsSection = () => {
   ];
 
   return (
-    <section ref={ref} className={`px-4 sm:px-6 lg:px-8 py-48 bg-background relative grid-bg border-b border-border/50 ${className}`}>
+    <section className="px-4 sm:px-6 lg:px-8 py-48 bg-background relative grid-bg border-b border-border/50">
       <TechLabel text="DEPLOY_UNITS // 003" side="left" />
       <div className="max-w-7xl mx-auto">
         <div className="mb-32 space-y-6 text-center">
-          <div className="mono text-xs text-accent uppercase tracking-[0.5em]">Standard Units // 0x02</div>
-          <h2 className="text-6xl md:text-8xl font-bold tracking-tighter">Productised <span className="text-gradient-rainbow">Offers</span></h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mono text-xs text-accent uppercase tracking-[0.5em]"
+          >
+            Standard Units // 0x02
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-6xl md:text-8xl font-bold tracking-tighter"
+          >
+            Productised <span className="text-gradient-rainbow">Offers</span>
+          </motion.h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x border border-border/50 bg-background/50 backdrop-blur-md rounded-3xl overflow-hidden">
           {products.map((product, idx) => (
-            <div
+            <motion.div
               key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
               className="p-12 group hover:bg-accent/[0.02] transition-smooth flex flex-col space-y-10"
             >
               <div className="space-y-4">
@@ -267,7 +351,7 @@ const ProductsSection = () => {
                   Initialize Module
                 </Link>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -277,7 +361,6 @@ const ProductsSection = () => {
 
 /* Process Section - High Trend Vertical */
 const ProcessSection = () => {
-  const { ref, className } = useReveal();
   const steps = [
     { number: '01', title: 'Exploratory Call', description: 'Check alignment, needs, and project feasibility.' },
     { number: '02', title: 'Proposal', description: 'Strategic roadmap, scoping, and value-based pricing.' },
@@ -286,10 +369,15 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section ref={ref} className={`px-4 sm:px-6 lg:px-8 py-48 bg-background border-b border-border/50 ${className}`}>
+    <section className="px-4 sm:px-6 lg:px-8 py-48 bg-background border-b border-border/50">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
-          <div className="lg:col-span-4 space-y-10">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-4 space-y-10"
+          >
             <div className="space-y-4">
               <div className="mono text-xs text-accent uppercase tracking-widest">Workflow</div>
               <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-none">The<br />Cycle</h2>
@@ -300,11 +388,18 @@ const ProcessSection = () => {
             <div className="pt-8 japanese-vertical mono text-[10px] opacity-20 tracking-[1em] leading-none uppercase">
               継続的改善 // 高速配信
             </div>
-          </div>
+          </motion.div>
 
           <div className="lg:col-span-8 space-y-12">
             {steps.map((step, idx) => (
-              <div key={idx} className="group flex items-start gap-10 relative">
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="group flex items-start gap-10 relative"
+              >
                 <div className="mono text-4xl md:text-6xl font-extrabold text-foreground/5 group-hover:text-accent/20 transition-smooth select-none">
                   {step.number}
                 </div>
@@ -313,7 +408,7 @@ const ProcessSection = () => {
                   <p className="text-muted-foreground mono text-sm max-w-lg opacity-70">{step.description}</p>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-border/50 via-border/50 to-transparent" />
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -324,7 +419,6 @@ const ProcessSection = () => {
 
 /* FAQ Section - Clean Tech */
 const FAQSection = () => {
-  const { ref, className } = useReveal();
   const faqs = [
     {
       question: 'How long do projects typically take?',
@@ -353,30 +447,42 @@ const FAQSection = () => {
   ];
 
   return (
-    <section ref={ref} className={`px-4 sm:px-6 lg:px-8 py-48 bg-background circuit-bg ${className}`}>
+    <section id="faq" className="px-4 sm:px-6 lg:px-8 py-48 bg-background circuit-bg">
       <div className="max-w-3xl mx-auto">
-        <div className="mb-24 text-center space-y-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="mb-24 text-center space-y-4"
+        >
           <div className="mono text-[10px] uppercase tracking-[0.5em] opacity-40">Documentation</div>
           <h2 className="text-5xl font-bold tracking-tighter">FAQ</h2>
-        </div>
+        </motion.div>
 
         <Accordion type="single" collapsible className="space-y-2">
           {faqs.map((faq, idx) => (
-            <AccordionItem
+            <motion.div
               key={idx}
-              value={`faq-${idx}`}
-              className="border-none bg-accent/[0.02] rounded-2xl px-8 py-2 transition-smooth hover:bg-accent/[0.05]"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.05 }}
             >
-              <AccordionTrigger className="text-lg font-bold text-foreground hover:no-underline text-left">
-                <span className="flex items-center gap-4">
-                  <span className="mono text-[10px] opacity-30">[{idx + 1}]</span>
-                  {faq.question}
-                </span>
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground pt-2 pb-6 mono text-sm leading-relaxed opacity-80">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
+              <AccordionItem
+                value={`faq-${idx}`}
+                className="border-none bg-accent/[0.02] rounded-2xl px-8 py-2 transition-smooth hover:bg-accent/[0.05]"
+              >
+                <AccordionTrigger className="text-lg font-bold text-foreground hover:no-underline text-left">
+                  <span className="flex items-center gap-4">
+                    <span className="mono text-[10px] opacity-30">[{idx + 1}]</span>
+                    {faq.question}
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground pt-2 pb-6 mono text-sm leading-relaxed opacity-80">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            </motion.div>
           ))}
         </Accordion>
       </div>

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Box, CheckCircle2, ChevronDown, Terminal, Activity, Cpu, ShieldCheck, Zap, Palette, Brain } from 'lucide-react';
 import { Price } from '@/contexts/CurrencyContext';
 import { useReveal } from '@/hooks/useReveal';
+import { motion } from 'framer-motion';
 
 /* Tech Metadata Label */
 const TechLabel = ({ text, side = 'left' }: { text: string, side?: 'left' | 'right' }) => (
@@ -38,28 +39,35 @@ const ProductsHero = () => {
 };
 
 /* Product Feature Card */
-const ProductCard = ({ 
-  id, 
-  title, 
-  description, 
-  outcome, 
-  includes, 
-  amount, 
-  suffix = "", 
-  icon: Icon 
-}: { 
-  id: string, 
-  title: string, 
-  description: string, 
-  outcome: string, 
-  includes: string[], 
-  amount: number, 
-  suffix?: string, 
-  icon: any 
+const ProductCard = ({
+  id,
+  title,
+  description,
+  outcome,
+  includes,
+  amount,
+  suffix = "",
+  icon: Icon,
+  index = 0
+}: {
+  id: string,
+  title: string,
+  description: string,
+  outcome: string,
+  includes: string[],
+  amount: number,
+  suffix?: string,
+  icon: any,
+  index?: number
 }) => {
-  const { ref, className } = useReveal();
   return (
-    <div ref={ref} className={`group bg-background border border-border/50 rounded-3xl overflow-hidden p-12 hover:bg-accent/[0.02] transition-smooth flex flex-col space-y-12 relative overflow-hidden ${className}`}>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1, duration: 0.6 }}
+      className="group bg-background border border-border/50 rounded-3xl overflow-hidden p-12 hover:bg-accent/[0.02] transition-smooth flex flex-col space-y-12 relative overflow-hidden"
+    >
       <div className="absolute top-8 right-8 mono text-[10px] opacity-20 group-hover:opacity-50 transition-opacity">ID: {id}</div>
       <div className="space-y-6">
         <div className="w-16 h-16 rounded-2xl bg-accent/5 border border-accent/20 flex items-center justify-center">
@@ -105,7 +113,7 @@ const ProductCard = ({
           <span className="relative z-10">Purchase Module</span>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -146,8 +154,8 @@ const ProductsGrid = () => {
     <section className="px-6 sm:px-10 lg:px-12 py-32 grid-bg">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {products.map((product) => (
-            <ProductCard key={product.id} {...product} />
+          {products.map((product, idx) => (
+            <ProductCard key={product.id} {...product} index={idx} />
           ))}
         </div>
       </div>

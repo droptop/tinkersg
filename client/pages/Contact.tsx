@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, Phone, Send, MapPin, CheckCircle2, Terminal, Activity, Cpu } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 /* Tech Metadata Label */
 const TechLabel = ({ text, side = 'left' }: { text: string, side?: 'left' | 'right' }) => (
@@ -52,12 +53,17 @@ export default function Contact() {
   return (
     <div className="min-h-screen pt-64 pb-48 px-6 sm:px-10 lg:px-12 bg-background relative overflow-hidden grid-bg">
       <TechLabel text="INIT_HANDSHAKE // 005" />
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
-          
+
           {/* Left Column: Info */}
-          <div className="lg:col-span-5 space-y-16">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-5 space-y-16"
+          >
             <div className="space-y-8">
               <div className="mono text-xs text-accent uppercase tracking-widest">Connect</div>
               <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85]">
@@ -108,10 +114,15 @@ export default function Contact() {
             <div className="pt-10 japanese-vertical mono text-[10px] opacity-10 tracking-[1.5em] leading-none uppercase">
               お問い合わせ // 接続中
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Form */}
-          <div className="lg:col-span-7">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-7"
+          >
             <form onSubmit={handleSubmit} className="space-y-12 relative">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="space-y-4">
@@ -169,7 +180,7 @@ export default function Contact() {
                 </span>
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

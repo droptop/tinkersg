@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, Clock, Tag, Search, Mail, Send, CheckCircle2, Terminal, Activity, Cpu } from 'lucide-react';
 import { useState } from 'react';
 import { useReveal } from '@/hooks/useReveal';
+import { motion } from 'framer-motion';
 
 /* Tech Metadata Label */
 const TechLabel = ({ text, side = 'left' }: { text: string, side?: 'left' | 'right' }) => (
@@ -38,26 +39,33 @@ const InsightsHero = () => {
 };
 
 /* Article Card */
-const ArticleCard = ({ 
-  title, 
-  category, 
-  date, 
-  readTime, 
-  image, 
-  description, 
-  id 
-}: { 
-  title: string, 
-  category: string, 
-  date: string, 
-  readTime: string, 
-  image: string, 
-  description: string, 
-  id: string 
+const ArticleCard = ({
+  title,
+  category,
+  date,
+  readTime,
+  image,
+  description,
+  id,
+  index = 0
+}: {
+  title: string,
+  category: string,
+  date: string,
+  readTime: string,
+  image: string,
+  description: string,
+  id: string,
+  index?: number
 }) => {
-  const { ref, className } = useReveal();
   return (
-    <article ref={ref} className={`group flex flex-col space-y-8 p-10 border border-border/50 rounded-3xl hover:bg-accent/[0.02] transition-smooth relative overflow-hidden ${className}`}>
+    <motion.article
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
+      className="group flex flex-col space-y-8 p-10 border border-border/50 rounded-3xl hover:bg-accent/[0.02] transition-smooth relative overflow-hidden"
+    >
       <div className="absolute top-8 right-8 mono text-[10px] opacity-20 group-hover:opacity-50 transition-opacity">DOC_ID: {id}</div>
       <div className="relative aspect-video rounded-2xl overflow-hidden border border-border/50">
         <img
@@ -89,7 +97,7 @@ const ArticleCard = ({
           Read Full Document <ArrowRight className="w-3 h-3 ml-2" />
         </Link>
       </div>
-    </article>
+    </motion.article>
   );
 };
 
@@ -129,8 +137,8 @@ const InsightsGrid = () => {
     <section className="px-6 sm:px-10 lg:px-12 py-32 grid-bg">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {articles.map((article) => (
-            <ArticleCard key={article.id} {...article} />
+          {articles.map((article, idx) => (
+            <ArticleCard key={article.id} {...article} index={idx} />
           ))}
         </div>
       </div>

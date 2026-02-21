@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Globe, Zap, Palette, Award, History, Users, Phone, Cpu } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 /* Tech Metadata Label */
 const TechLabel = ({ text, side = 'left' }: { text: string, side?: 'left' | 'right' }) => (
@@ -17,13 +18,23 @@ const AboutHero = () => {
     <section className="relative pt-64 pb-48 px-6 sm:px-10 lg:px-12 overflow-hidden grid-bg border-b border-border/50">
       <TechLabel text="CORE_MISSION // 004" />
       <div className="max-w-6xl mx-auto relative z-10">
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] mb-12">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] mb-12"
+        >
           Senior Thinking.<br />
           <span className="text-gradient-rainbow">Hands-on</span> Delivery.
-        </h1>
-        <p className="text-xl md:text-3xl text-muted-foreground max-w-3xl leading-relaxed mono font-light">
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-xl md:text-3xl text-muted-foreground max-w-3xl leading-relaxed mono font-light"
+        >
           Tinkertorium is a design and development agency based in Singapore. Since 2007, we've been building the next generation of digital infrastructure.
-        </p>
+        </motion.p>
       </div>
     </section>
   );
@@ -35,7 +46,12 @@ const OurStory = () => {
     <section className="px-6 sm:px-10 lg:px-12 py-48 border-b border-border/50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
-          <div className="lg:col-span-5 space-y-12">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-5 space-y-12"
+          >
             <div className="inline-flex items-center px-4 py-1 rounded-full border border-accent/30 mono text-[10px] text-accent uppercase tracking-widest bg-accent/5">
               EST_2007 // SIN
             </div>
@@ -43,9 +59,15 @@ const OurStory = () => {
             <div className="japanese-vertical mono text-[10px] opacity-20 tracking-[1.5em] leading-none uppercase pt-10">
               歴史と進化 // デジタル
             </div>
-          </div>
-          
-          <div className="lg:col-span-7 space-y-10">
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-7 space-y-10"
+          >
             <div className="space-y-8 text-xl md:text-2xl text-foreground/80 leading-relaxed mono font-light">
               <p>
                 Founded in 2007 as Tinkertorium Pte Ltd, we began with a simple mission: to help companies navigate the rapidly evolving digital landscape through design-led execution.
@@ -64,14 +86,21 @@ const OurStory = () => {
                 { label: 'Countries', val: '50+' },
                 { label: 'Clients', val: 'Global' },
                 { label: 'Workflow', val: 'AI-First' },
-              ].map((stat) => (
-                <div key={stat.label} className="space-y-2">
+              ].map((stat, idx) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + idx * 0.1 }}
+                  className="space-y-2"
+                >
                   <div className="text-3xl font-black tracking-tighter">{stat.val}</div>
                   <div className="mono text-[10px] uppercase tracking-widest opacity-40">{stat.label}</div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -106,20 +135,32 @@ const CorePhilosophy = () => {
   return (
     <section className="px-6 sm:px-10 lg:px-12 py-48 bg-background circuit-bg border-b border-border/50">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-24 space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-24 space-y-4"
+        >
           <div className="mono text-xs text-accent uppercase tracking-[0.5em]">Operating System</div>
           <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">Core Values</h2>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x border-y border-border/50">
-          {values.map((value) => (
-            <div key={value.id} className="p-10 group hover:bg-accent/[0.02] transition-smooth relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x border-y border-border/50 bg-background/50 backdrop-blur-sm">
+          {values.map((value, idx) => (
+            <motion.div
+              key={value.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="p-10 group hover:bg-accent/[0.02] transition-smooth relative"
+            >
               <div className="mono text-[10px] opacity-20 mb-8">{value.id}</div>
               <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-accent transition-smooth">{value.title}</h3>
               <p className="text-muted-foreground mono text-sm opacity-70 group-hover:opacity-100 transition-opacity leading-relaxed">
                 {value.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -156,20 +197,34 @@ const GlobalImpact = () => {
     <section className="px-6 sm:px-10 lg:px-12 py-48 grid-bg border-b border-border/50">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
-          <div className="space-y-4">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-4"
+          >
             <div className="mono text-xs text-accent uppercase tracking-widest">Case_Studies</div>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">Global Impact</h2>
-          </div>
-          <div className="inline-flex items-center px-6 py-3 rounded-full border border-accent/20 mono text-[10px] text-accent uppercase tracking-[0.2em] animate-pulse">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center px-6 py-3 rounded-full border border-accent/20 mono text-[10px] text-accent uppercase tracking-[0.2em] animate-pulse"
+          >
             <Award className="w-4 h-4 mr-3" />
             IFA Best Show Award
-          </div>
+          </motion.div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border/50 border border-border/50">
           {impacts.map((item, idx) => (
-            <div
+            <motion.div
               key={idx}
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
               className="bg-background p-12 hover:bg-accent/[0.02] transition-smooth group"
             >
               <div className="flex justify-between items-start mb-10">
@@ -178,7 +233,7 @@ const GlobalImpact = () => {
               </div>
               <h3 className="text-4xl font-bold tracking-tighter mb-6 group-hover:text-gradient-rainbow transition-smooth">{item.client}</h3>
               <p className="text-muted-foreground mono text-sm leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">{item.impact}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

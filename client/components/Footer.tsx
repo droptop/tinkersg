@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Mail, Linkedin, Twitter, Terminal, Cpu, Globe } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const FOOTER_LINKS = [
   {
@@ -22,7 +23,13 @@ const FOOTER_LINKS = [
 
 export const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border/50 relative overflow-hidden grid-bg">
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1 }}
+      className="bg-background border-t border-border/50 relative overflow-hidden grid-bg"
+    >
       <div className="max-w-[1800px] mx-auto px-6 sm:px-10 lg:px-12 py-24 md:py-32">
         {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-24 mb-24">
@@ -114,6 +121,6 @@ export const Footer = () => {
 
       {/* Decorative tech bar */}
       <div className="h-1 gradient-rainbow w-full opacity-50" />
-    </footer>
+    </motion.footer>
   );
 };
