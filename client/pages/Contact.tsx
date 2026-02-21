@@ -27,7 +27,7 @@ export default function Contact() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen pt-48 pb-32 px-6 sm:px-10 lg:px-12 grid-bg">
+      <div className="min-h-screen pt-64 pb-48 px-6 sm:px-10 lg:px-12 grid-bg">
         <div className="max-w-3xl mx-auto text-center space-y-12">
           <div className="w-24 h-24 bg-foreground text-background rounded-full mx-auto flex items-center justify-center animate-bounce">
             <CheckCircle2 className="w-12 h-12" />
@@ -50,7 +50,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen pt-48 pb-32 px-6 sm:px-10 lg:px-12 bg-background relative overflow-hidden grid-bg">
+    <div className="min-h-screen pt-64 pb-48 px-6 sm:px-10 lg:px-12 bg-background relative overflow-hidden grid-bg">
       <TechLabel text="INIT_HANDSHAKE // 005" />
       
       <div className="max-w-7xl mx-auto relative z-10">

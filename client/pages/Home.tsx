@@ -3,6 +3,7 @@ import { ArrowRight, Zap, Palette, Code, Brain, CheckCircle2, ChevronDown, Termi
 import { useState } from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Price } from '@/contexts/CurrencyContext';
+import { useReveal } from '@/hooks/useReveal';
 
 /* Tech Metadata Label */
 const TechLabel = ({ text, side = 'left' }: { text: string, side?: 'left' | 'right' }) => (
@@ -16,8 +17,10 @@ const TechLabel = ({ text, side = 'left' }: { text: string, side?: 'left' | 'rig
 
 /* Hero Section */
 const HeroSection = () => {
+  const { ref, className } = useReveal();
+
   return (
-    <section className="relative pt-40 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden grid-bg border-b border-border/50">
+    <section ref={ref} className={`relative pt-56 pb-48 px-4 sm:px-6 lg:px-8 overflow-hidden grid-bg border-b border-border/50 ${className}`}>
       <TechLabel text="SYSTEM_INIT // 001" />
       <div className="absolute top-0 right-0 p-8 opacity-20 hidden lg:block japanese-vertical mono text-xs tracking-widest leading-loose">
         ティンカートリウム // クリエイティブ・テクノロジー
@@ -25,8 +28,8 @@ const HeroSection = () => {
       
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
-          <div className="flex-1 space-y-10">
-            <div className="space-y-4">
+          <div className="flex-1 space-y-16">
+            <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/5 border border-accent/20 rounded-full mono text-[10px] text-accent uppercase tracking-wider">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
@@ -40,7 +43,7 @@ const HeroSection = () => {
               </h1>
             </div>
             
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-xl leading-relaxed mono font-light">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-xl leading-relaxed mono font-light opacity-80">
               We work with founders and operators who see design as a growth engine. From product to platform to hardware hybrids, we build systems that move businesses forward.
             </p>
 
@@ -82,6 +85,7 @@ const HeroSection = () => {
 
 /* Social Proof Strip */
 const SocialProofSection = () => {
+  const { ref, className } = useReveal();
   const clients = [
     { name: 'GIC', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2Fe5fbd53072f84221828638c3e84e7d49?format=webp&width=200', className: 'h-8 md:h-10' },
     { name: 'Zound Industries', logo: 'https://cdn.builder.io/api/v1/image/assets%2Fa81fac9c3bae4b51ace81c3349c8dc9d%2F8e3cc6d712514beba60476a1c48f2f6b?format=webp&width=200' },
@@ -89,7 +93,7 @@ const SocialProofSection = () => {
   ];
 
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-12 border-b border-border/50 bg-background/50 backdrop-blur-sm relative overflow-hidden">
+    <section ref={ref} className={`px-4 sm:px-6 lg:px-8 py-20 border-b border-border/50 bg-background/50 backdrop-blur-sm relative overflow-hidden ${className}`}>
       <TechLabel text="TRUSTED_PARTNERS // 002" side="right" />
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
         <p className="mono text-[10px] uppercase tracking-[0.4em] opacity-40">Verified Partners</p>
@@ -111,6 +115,7 @@ const SocialProofSection = () => {
 
 /* Services Grid - Borderless / Techy */
 const ServicesGrid = () => {
+  const { ref, className } = useReveal();
   const services = [
     {
       icon: Brain,
@@ -139,15 +144,15 @@ const ServicesGrid = () => {
   ];
 
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-32 circuit-bg border-b border-border/50">
+    <section ref={ref} className={`px-4 sm:px-6 lg:px-8 py-48 circuit-bg border-b border-border/50 ${className}`}>
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
-          <div className="space-y-4">
-            <div className="mono text-xs text-accent uppercase tracking-widest">Capabilities</div>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">Our Core<br /><span className="text-muted-foreground/50">Functions</span></h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-32 gap-12">
+          <div className="space-y-6">
+            <div className="mono text-xs text-accent uppercase tracking-widest">Capabilities // 0x01</div>
+            <h2 className="text-6xl md:text-8xl font-bold tracking-tighter">Our Core<br /><span className="text-muted-foreground/30 italic">Functions</span></h2>
           </div>
-          <p className="text-xl text-muted-foreground max-w-sm mono font-light">
-            Everything your brand needs to move the needle in a tech-driven market.
+          <p className="text-xl text-muted-foreground max-w-md mono font-light leading-relaxed">
+            Everything your brand needs to move the needle in a tech-driven market. Staggered modules for precise execution.
           </p>
         </div>
 
@@ -189,6 +194,7 @@ const ServicesGrid = () => {
 
 /* Products Teaser - Borderless / Iridescent */
 const ProductsSection = () => {
+  const { ref, className } = useReveal();
   const products = [
     {
       name: 'Brand Sprint',
@@ -214,12 +220,12 @@ const ProductsSection = () => {
   ];
 
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-32 bg-background relative grid-bg border-b border-border/50">
+    <section ref={ref} className={`px-4 sm:px-6 lg:px-8 py-48 bg-background relative grid-bg border-b border-border/50 ${className}`}>
       <TechLabel text="DEPLOY_UNITS // 003" side="left" />
       <div className="max-w-7xl mx-auto">
-        <div className="mb-24 space-y-4 text-center">
-          <div className="mono text-xs text-accent uppercase tracking-[0.5em]">Standard Units</div>
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">Productised <span className="text-gradient-rainbow">Offers</span></h2>
+        <div className="mb-32 space-y-6 text-center">
+          <div className="mono text-xs text-accent uppercase tracking-[0.5em]">Standard Units // 0x02</div>
+          <h2 className="text-6xl md:text-8xl font-bold tracking-tighter">Productised <span className="text-gradient-rainbow">Offers</span></h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x border border-border/50 bg-background/50 backdrop-blur-md rounded-3xl overflow-hidden">
@@ -270,6 +276,7 @@ const ProductsSection = () => {
 
 /* Process Section - High Trend Vertical */
 const ProcessSection = () => {
+  const { ref, className } = useReveal();
   const steps = [
     { number: '01', title: 'Exploratory Call', description: 'Check alignment, needs, and project feasibility.' },
     { number: '02', title: 'Proposal', description: 'Strategic roadmap, scoping, and value-based pricing.' },
@@ -278,7 +285,7 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-32 bg-background border-b border-border/50">
+    <section ref={ref} className={`px-4 sm:px-6 lg:px-8 py-48 bg-background border-b border-border/50 ${className}`}>
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
           <div className="lg:col-span-4 space-y-10">
@@ -316,6 +323,7 @@ const ProcessSection = () => {
 
 /* FAQ Section - Clean Tech */
 const FAQSection = () => {
+  const { ref, className } = useReveal();
   const faqs = [
     {
       question: 'How long do projects typically take?',
@@ -344,7 +352,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-32 bg-background circuit-bg">
+    <section ref={ref} className={`px-4 sm:px-6 lg:px-8 py-48 bg-background circuit-bg ${className}`}>
       <div className="max-w-3xl mx-auto">
         <div className="mb-24 text-center space-y-4">
           <div className="mono text-[10px] uppercase tracking-[0.5em] opacity-40">Documentation</div>
@@ -378,7 +386,7 @@ const FAQSection = () => {
 /* Final CTA Section - Ultra Modern */
 const CTASection = () => {
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-40 bg-foreground relative overflow-hidden">
+    <section className="px-4 sm:px-6 lg:px-8 py-64 bg-foreground relative overflow-hidden">
       <div className="absolute inset-0 gradient-rainbow opacity-20 animate-pulse" />
       <div className="max-w-5xl mx-auto text-center relative z-10 space-y-12">
         <h2 className="text-6xl md:text-8xl lg:text-9xl font-extrabold text-background tracking-tighter leading-none">

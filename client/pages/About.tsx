@@ -14,7 +14,7 @@ const TechLabel = ({ text, side = 'left' }: { text: string, side?: 'left' | 'rig
 /* Hero Section */
 const AboutHero = () => {
   return (
-    <section className="relative pt-48 pb-32 px-6 sm:px-10 lg:px-12 overflow-hidden grid-bg border-b border-border/50">
+    <section className="relative pt-64 pb-48 px-6 sm:px-10 lg:px-12 overflow-hidden grid-bg border-b border-border/50">
       <TechLabel text="CORE_MISSION // 004" />
       <div className="max-w-6xl mx-auto relative z-10">
         <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] mb-12">
@@ -32,7 +32,7 @@ const AboutHero = () => {
 /* Our Story Section - Minimal / Line-based */
 const OurStory = () => {
   return (
-    <section className="px-6 sm:px-10 lg:px-12 py-32 border-b border-border/50 relative overflow-hidden">
+    <section className="px-6 sm:px-10 lg:px-12 py-48 border-b border-border/50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
           <div className="lg:col-span-5 space-y-12">
@@ -104,7 +104,7 @@ const CorePhilosophy = () => {
   ];
 
   return (
-    <section className="px-6 sm:px-10 lg:px-12 py-32 bg-background circuit-bg border-b border-border/50">
+    <section className="px-6 sm:px-10 lg:px-12 py-48 bg-background circuit-bg border-b border-border/50">
       <div className="max-w-7xl mx-auto">
         <div className="mb-24 space-y-4">
           <div className="mono text-xs text-accent uppercase tracking-[0.5em]">Operating System</div>
@@ -153,7 +153,7 @@ const GlobalImpact = () => {
   ];
 
   return (
-    <section className="px-6 sm:px-10 lg:px-12 py-32 grid-bg border-b border-border/50">
+    <section className="px-6 sm:px-10 lg:px-12 py-48 grid-bg border-b border-border/50">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
           <div className="space-y-4">
@@ -189,7 +189,7 @@ const GlobalImpact = () => {
 /* Contact / Call to Action - Minimal Full Width */
 const ContactSection = () => {
   return (
-    <section className="px-6 sm:px-10 lg:px-12 py-40 bg-foreground relative overflow-hidden">
+    <section className="px-6 sm:px-10 lg:px-12 py-64 bg-foreground relative overflow-hidden">
       <div className="absolute inset-0 circuit-bg opacity-10" />
       <div className="max-w-5xl mx-auto text-center relative z-10 space-y-16">
         <h2 className="text-6xl md:text-8xl lg:text-[10rem] font-black text-background tracking-tighter leading-none">
