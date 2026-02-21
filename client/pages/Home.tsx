@@ -142,17 +142,20 @@ const ServicesGrid = () => {
 /* Process Section */
 const ProcessSection = () => {
   const steps = [
-    { number: '01', title: 'Align', description: 'Understand your goals, audience, and constraints.' },
-    { number: '02', title: 'Design', description: 'Create strategy, messaging, and visual direction.' },
-    { number: '03', title: 'Implement', description: 'Build, test, and optimise for performance.' },
-    { number: '04', title: 'Grow', description: 'Measure, iterate, and scale what works.' },
+    { number: '01', title: 'Exploratory Call', description: 'Initial call to check alignment, needs, and project feasibility.' },
+    { number: '02', title: 'Proposal', description: 'Detailed strategic roadmap, scoping, and value-based pricing.' },
+    { number: '03', title: 'Execution', description: 'Hands-on design and development with weekly ship cycles.' },
+    { number: '04', title: 'Iteration', description: 'Measuring impact, gathering data, and scaling the solution.' },
   ];
 
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-20 bg-card/30">
+    <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-card/30">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 md:mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground">How we work</h2>
+          <p className="text-lg text-muted-foreground mt-4 max-w-2xl">
+            A streamlined process designed for speed, clarity, and results.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -343,8 +346,8 @@ export default function Home() {
       <HeroSection />
       <SocialProofSection />
       <ServicesGrid />
-      <ProcessSection />
       <ProductsSection />
+      <ProcessSection />
       <FAQSection />
       <CTASection />
     </div>
