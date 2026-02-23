@@ -95,7 +95,7 @@ export const Footer = () => {
           {/* Legal and social */}
           <div className="flex flex-col sm:flex-row items-center gap-10">
             <p className="mono text-[10px] uppercase tracking-[0.2em] opacity-30">
-              &copy; 2024 Tinkertorium // Systems Active
+              &copy; 2026 Tinkertorium // Systems Active
             </p>
             <div className="flex space-x-6">
               <a href="#" className="text-foreground/40 hover:text-accent transition-smooth" aria-label="LinkedIn">
