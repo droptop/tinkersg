@@ -15,7 +15,7 @@ const FOOTER_LINKS = [
     title: 'Internal',
     items: [
       { label: 'About', href: '/about' },
-      { label: 'Careers', href: '#' },
+      { label: 'Careers', href: '/careers' },
       { label: 'Contact', href: '/contact' },
     ],
   },
