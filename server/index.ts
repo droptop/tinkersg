@@ -1,18 +1,21 @@
-import path from "path";
+import "dotenv/config";
 import express from "express";
-import { createServer } from "../server/index";
+import cors from "cors";
+import { handleDemo } from "./routes/demo";
 
-const app = createServer();
+export function createServer() {
+  const app = express();
 
-// Serve static files from dist/spa
-app.use(express.static(path.join(process.cwd(), "dist/spa")));
+  app.use(cors());
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
 
-// Catch-all for React Router
-app.get("*", (req, res) => {
-  if (req.path.startsWith("/api/") || req.path.startsWith("/health")) {
-    return res.status(404).json({ error: "Not found" });
-  }
-  res.sendFile(path.join(process.cwd(), "dist/spa/index.html"));
-});
+  app.get("/api/ping", (_req, res) => {
+    const ping = process.env.PING_MESSAGE ?? "ping";
+    res.json({ message: ping });
+  });
 
-export default app;
+  app.get("/api/demo", handleDemo);
+
+  return app;
+}
