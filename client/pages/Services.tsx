@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Brain, Palette, Code, Zap, Smartphone, Search, Database, Layout, ShieldCheck, BarChart3, Globe } from 'lucide-react';
+import { ArrowRight, Brain, Palette, Code, Zap, Smartphone, Search, Database, Layout, ShieldCheck, BarChart3, Globe, Cpu, Terminal, Layers } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import { motion } from 'framer-motion';
 
@@ -191,6 +191,35 @@ const ServicesList = () => {
         'Mobile UX Optimization',
         'App Store Strategy',
         'Push Notification Systems'
+      ]
+    },
+    {
+      id: '0x06',
+      icon: Terminal,
+      title: 'Full-Stack App Development',
+      description: 'Engineering robust, scalable applications across web and desktop platforms with a focus on high-load performance and security.',
+      items: [
+        'Custom Web Applications',
+        'Desktop App Development',
+        'API Architecture & Integration',
+        'Database Design & Scaling',
+        'Cloud Infrastructure (AWS/GCP)',
+        'Real-time Data Systems'
+      ],
+      reverse: true
+    },
+    {
+      id: '0x07',
+      icon: Cpu,
+      title: 'Hardware-Software Hybrid Ecosystems',
+      description: 'Developing seamless integrations between physical hardware and digital interfaces, creating cohesive IoT and embedded systems.',
+      items: [
+        'IoT Architecture & Design',
+        'Embedded System Interfaces',
+        'Hardware-to-Cloud Integration',
+        'Sensor Data Visualization',
+        'Custom Firmware Development',
+        'Edge Computing Solutions'
       ]
     }
   ];
