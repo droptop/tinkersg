@@ -1,8 +1,17 @@
 import path from "path";
 import express from "express";
-import { createServer } from "../server/index";
+import cors from "cors";
 
-const app = createServer();
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.get("/api/ping", (_req, res) => {
+  const ping = process.env.PING_MESSAGE ?? "ping";
+  res.json({ message: ping });
+});
 
 app.use(express.static(path.join(process.cwd(), "dist/spa")));
 
